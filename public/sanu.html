@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanù — Vends sur WhatsApp, sans le chaos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sanu.css" />
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="wordmark">san<em>ù</em></div>
+  <a href="#rejoindre" class="nav-cta">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Rejoindre la bêta
+  </a>
+</nav>
+
+<!-- ── HERO ── -->
+<section>
+  <div class="hero">
+
+    <!-- Left: headline + form -->
+    <div class="hero-left">
+      <div class="tag"><span class="pip"></span> Bêta fermée · Bénin 🇧🇯</div>
+      <h1>Vends sur WhatsApp.<br><span class="hi">Sans le chaos.</span></h1>
+      <p class="hero-sub">
+        Sanù est ton assistant business dans WhatsApp. Il gère tes produits,
+        tes paiements et ta comptabilité — pendant que toi, tu vends.
+      </p>
+
+      <!-- Multi-step form -->
+      <div class="msf-wrap" id="rejoindre">
+
+        <!-- Progress bar -->
+        <div class="msf-progress" id="msf-progress">
+          <div class="msf-dot done" id="dot-0"></div>
+          <div class="msf-dot" id="dot-1"></div>
+          <div class="msf-dot" id="dot-2"></div>
+          <div class="msf-dot" id="dot-3"></div>
+        </div>
+
+        <!-- Step 1 — Ce que tu vends -->
+        <div class="msf-step active" id="msf-step-0">
+          <span class="msf-label">Étape 1 / 4</span>
+          <p class="msf-question">Tu vends quoi principalement ?</p>
+          <div class="msf-chips" id="chips-sells">
+            <span class="msf-chip" data-val="Vêtements &amp; tissus">👗 Vêtements &amp; tissus</span>
+            <span class="msf-chip" data-val="Alimentation &amp; boissons">🥘 Alimentation &amp; boissons</span>
+            <span class="msf-chip" data-val="Électronique &amp; téléphones">📱 Électronique</span>
+            <span class="msf-chip" data-val="Cosmétiques &amp; beauté">💄 Cosmétiques &amp; beauté</span>
+            <span class="msf-chip" data-val="Artisanat &amp; déco">🏺 Artisanat &amp; déco</span>
+            <span class="msf-chip" data-val="Services">🛠️ Services</span>
+            <span class="msf-chip" data-val="Autre">Autre</span>
+          </div>
+          <textarea class="msf-textarea" id="sells-other" placeholder="Précise si tu veux…" rows="2" hidden></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-next" data-step="0">
+              Continuer
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <p class="msf-hint">🔒 Zéro spam. <span>+340 vendeurs</span> déjà inscrits.</p>
+        </div>
+
+        <!-- Step 2 — Difficultés -->
+        <div class="msf-step" id="msf-step-1">
+          <span class="msf-label">Étape 2 / 4</span>
+          <p class="msf-question">Quelles sont tes galères du quotidien ?</p>
+          <div class="msf-chips multi" id="chips-pain">
+            <span class="msf-chip" data-val="Perdre des commandes dans les messages">😵 Perdre des commandes</span>
+            <span class="msf-chip" data-val="Gérer les paiements et impayés">💸 Paiements &amp; impayés</span>
+            <span class="msf-chip" data-val="Pas de factures ni reçus">🧾 Pas de factures</span>
+            <span class="msf-chip" data-val="Pas de visibilité sur mes ventes">📊 Pas de visibilité</span>
+            <span class="msf-chip" data-val="Trop de temps passé à répondre aux clients">⏱️ Trop de temps client</span>
+            <span class="msf-chip" data-val="Gérer le stock">📦 Gérer le stock</span>
+          </div>
+          <textarea class="msf-textarea" id="pain-extra" placeholder="Autre chose ? Dis-moi librement…" rows="2"></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-back" data-step="1">←</button>
+            <button class="msf-btn-next" data-step="1">
+              Continuer
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 — Automatiser -->
+        <div class="msf-step" id="msf-step-2">
+          <span class="msf-label">Étape 3 / 4</span>
+          <p class="msf-question">Si tu pouvais tout automatiser, tu commencerais par quoi ?</p>
+          <div class="msf-chips multi" id="chips-auto">
+            <span class="msf-chip" data-val="Prendre les commandes automatiquement">📥 Prendre les commandes</span>
+            <span class="msf-chip" data-val="Envoyer les reçus et factures">🧾 Reçus &amp; factures</span>
+            <span class="msf-chip" data-val="Suivre les paiements">💳 Suivre les paiements</span>
+            <span class="msf-chip" data-val="Gérer mon stock">📦 Mon stock</span>
+            <span class="msf-chip" data-val="Voir mes stats de ventes">📊 Mes stats</span>
+            <span class="msf-chip" data-val="Répondre aux clients">💬 Répondre aux clients</span>
+          </div>
+          <textarea class="msf-textarea" id="auto-extra" placeholder="Autre chose ?" rows="2"></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-back" data-step="2">←</button>
+            <button class="msf-btn-next" data-step="2">
+              Continuer
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4 — Contact -->
+        <div class="msf-step" id="msf-step-3">
+          <span class="msf-label">Étape 4 / 4</span>
+          <p class="msf-question">On te contacte comment sur WhatsApp ?</p>
+          <input class="msf-input" type="tel" id="msf-contact" placeholder="Ton numéro (+229…)" />
+          <div class="msf-actions">
+            <button class="msf-btn-back" data-step="3">←</button>
+            <button class="msf-btn-next msf-btn-submit" id="msf-submit-btn" data-step="3">
+              Rejoindre Sanù ✓
+            </button>
+          </div>
+          <p class="msf-hint">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
+        </div>
+
+        <!-- Success state -->
+        <div class="msf-success" id="msf-success" hidden>
+          <div class="s-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Tu es sur la liste ✓</h3>
+          <p>Merci ! On te contacte sur WhatsApp très bientôt.<br>Tu fais partie des premiers à tester Sanù.</p>
+        </div>
+
+      </div><!-- /msf-wrap -->
+
+      <div class="proof">
+        <div class="faces">
+          <span>👩🏿</span><span>👨🏾</span><span>👩🏽</span><span>👨🏿</span>
+        </div>
+        <span class="proof-text"><strong>340+ vendeurs</strong> sur liste d'attente</span>
+      </div>
+    </div><!-- /hero-left -->
+
+    <!-- Right: phone mockup -->
+    <div class="hero-right">
+      <div class="phone-frame">
+        <div class="phone-top">
+          <div class="phone-top-avatar">🤖</div>
+          <div class="phone-top-info">
+            <div class="name">Sanù Assistant</div>
+            <div class="status">En ligne</div>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Bonjour Fatoumata ! 👋 Que veux-tu faire aujourd'hui ?
+            <div class="ts">09:01 ✓✓</div>
+          </div>
+          <div class="msg out">Ajouter un produit<div class="ts">09:02 ✓✓</div></div>
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Parfait ! Donne-moi : nom, prix et une photo 📸
+            <div class="ts">09:02 ✓✓</div>
+          </div>
+          <div class="msg out">Robe wax indigo — 9 500 F CFA<div class="ts">09:03 ✓✓</div></div>
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Produit créé ✅ Voici ton lien :
+            <div class="product-card">
+              <div class="pname">🛍️ Robe wax indigo</div>
+              <div class="pprice">9 500 F CFA</div>
+              <span class="plink">→ Lien de commande</span>
+            </div>
+            <div class="ts">09:03 ✓✓</div>
+          </div>
+          <div class="msg-typing">
+            <div class="dot-t"></div><div class="dot-t"></div><div class="dot-t"></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /hero-right -->
+
+  </div><!-- /hero -->
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section">
+  <div class="section-inner">
+    <div class="how-header reveal">
+      <div>
+        <p class="eyebrow">Comment ça marche</p>
+        <h2 class="section-title">Simple comme<br>envoyer un message.</h2>
+      </div>
+      <p>Pas d'app à installer, pas de formation. Si tu sais utiliser WhatsApp, tu sais utiliser Sanù.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-item reveal">
+        <div class="step-circle">💬</div>
+        <h3>Tu enregistres Sanù</h3>
+        <p>Un numéro WhatsApp à ajouter à tes contacts. C'est tout. Aucune inscription compliquée.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">📦</div>
+        <h3>Tu ajoutes tes produits</h3>
+        <p>Envoie nom, prix et photo en message. Sanù crée le produit et génère un lien de commande en 3 secondes.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">🔗</div>
+        <h3>Tu partages le lien</h3>
+        <p>Colle le lien en statut WhatsApp ou envoie-le à tes clients. Ils commandent directement, sans friction.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">✅</div>
+        <h3>Sanù gère le reste</h3>
+        <p>Paiements, commandes, factures, comptabilité — tout se fait automatiquement. Toi tu encaisses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SIMPLICITÉ ── -->
+<section class="simple-section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">La simplicité avant tout</p>
+    <h2 class="section-title reveal">Pas de formulaires.<br>Pas de tableaux compliqués.<br>Juste une conversation.</h2>
+    <div class="simple-grid">
+      <div class="chat-demo reveal">
+        <div class="chat-header">
+          <div class="chat-header-av">🤖</div>
+          <div class="chat-header-info">
+            <div class="cname">Sanù</div>
+            <div class="cstatus">Répond instantanément</div>
+          </div>
+        </div>
+        <div class="chat-messages">
+          <div class="cm sent">Combien j'ai gagné ce mois ?<div class="time-s">14:22 ✓✓</div></div>
+          <div class="cm recv">
+            <span class="lbl">Sanù 📊</span>
+            Voici ton résumé de février :
+            <div class="stat-block">
+              <div class="stat-line"><span>Chiffre d'affaires</span><span class="stat-val">187 500 F</span></div>
+              <div class="stat-line"><span>Commandes livrées</span><span class="stat-val">34</span></div>
+              <div class="stat-line"><span>Top produit</span><span class="stat-val">Robe wax 🥇</span></div>
+              <div class="stat-line"><span>En attente paiement</span><span class="stat-val">2 commandes</span></div>
+            </div>
+            <div class="time-s">14:22 ✓✓</div>
+          </div>
+          <div class="cm sent">Génère ma facture pour Mme Houénou<div class="time-s">14:23 ✓✓</div></div>
+          <div class="cm recv">
+            <span class="lbl">Sanù 🧾</span>
+            Facture #F-2025-041 générée ✅<br>PDF envoyé à Mme Houénou automatiquement.
+            <div class="time-s">14:23 ✓✓</div>
+          </div>
+        </div>
+      </div>
+      <div class="simple-points">
+        <div class="simple-point reveal">
+          <div class="sp-icon">🗣️</div>
+          <div class="sp-text">
+            <h3>Tu parles, Sanù comprend</h3>
+            <p>Pose tes questions en français naturel : "Combien j'ai fait aujourd'hui ?", "Mes commandes en attente ?", "Génère une facture." — Sanù répond immédiatement.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">⚡</div>
+          <div class="sp-text">
+            <h3>Tout se fait en quelques mots</h3>
+            <p>Créer un produit, confirmer une livraison, enregistrer un paiement cash — chaque action prend moins de 30 secondes dans le chat.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">🔄</div>
+          <div class="sp-text">
+            <h3>Aucun changement d'habitude</h3>
+            <p>Tu restais déjà sur WhatsApp toute la journée. Sanù s'intègre à ta façon de travailler, pas l'inverse. Zéro friction, zéro apprentissage.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">📋</div>
+          <div class="sp-text">
+            <h3>Formalisation sans douleur</h3>
+            <p>Avec les nouvelles obligations fiscales, tes factures et ta comptabilité sont générées automatiquement. Tu es en règle sans effort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APP COMPLEMENT ── -->
+<section class="app-section">
+  <div class="app-inner">
+    <p class="eyebrow reveal">WhatsApp + Application</p>
+    <h2 class="section-title reveal">Le meilleur des deux mondes.</h2>
+    <div class="bridge reveal">
+      <div class="bridge-icon">🔗</div>
+      <div class="bridge-text">
+        <h3>WhatsApp pour agir, l'app pour voir</h3>
+        <p>Tu gères tout depuis WhatsApp — rapide, naturel, sans friction. L'application Sanù te donne une vue d'ensemble complète de ton activité quand tu en as besoin.</p>
+      </div>
+    </div>
+    <div class="app-grid">
+      <div class="app-points">
+        <div class="app-point reveal">
+          <div class="app-point-icon">📱</div>
+          <div>
+            <h3>WhatsApp — ton cockpit du quotidien</h3>
+            <p>Crée, vends, encaisse et réponds à tes clients directement en chat. Tout ce qui est urgent se fait là, en quelques mots.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">📊</div>
+          <div>
+            <h3>L'app — ta vue globale</h3>
+            <p>Consulte tes graphiques de ventes, l'historique complet de tes commandes, le détail de ta comptabilité mensuelle et tes rapports fiscaux.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">🔔</div>
+          <div>
+            <h3>Synchronisation en temps réel</h3>
+            <p>Tout ce que tu fais sur WhatsApp s'affiche instantanément dans l'app. Rien à saisir deux fois. Tout est toujours à jour.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">📥</div>
+          <div>
+            <h3>Exports et rapports en un clic</h3>
+            <p>Télécharge tes rapports mensuels, tes factures groupées ou ton bilan annuel directement depuis l'app — prêt pour le fisc ou tes banques.</p>
+          </div>
+        </div>
+      </div>
+      <div class="app-visual reveal">
+        <div class="dash-header">
+          <span class="dh-title">Tableau de bord</span>
+          <span class="dh-date">Février 2025</span>
+        </div>
+        <div class="dash-kpis">
+          <div class="kpi">
+            <div class="kpi-label">Chiffre d'affaires</div>
+            <div class="kpi-val">187 500 <small>F</small></div>
+            <span class="kpi-badge">↑ +23% vs jan</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Commandes</div>
+            <div class="kpi-val">34</div>
+            <span class="kpi-badge">↑ 8 de plus</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Panier moyen</div>
+            <div class="kpi-val">5 515 <small>F</small></div>
+            <span class="kpi-badge">Stable</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Taux livraison</div>
+            <div class="kpi-val">94<span class="pct">%</span></div>
+            <span class="kpi-badge">↑ Excellent</span>
+          </div>
+        </div>
+        <div class="dash-chart">
+          <div class="dash-chart-label">VENTES PAR SEMAINE</div>
+          <div class="bars">
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:48%"></div>
+            <div class="bar hi" style="height:72%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar hi" style="height:85%"></div>
+            <div class="bar" style="height:68%"></div>
+            <div class="bar hi" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="dash-orders">
+          <div class="order-row">
+            <span class="oname">Robe wax indigo × 2</span>
+            <span class="oprice">19 000 F</span>
+            <span class="ostatus">Livré</span>
+          </div>
+          <div class="order-row">
+            <span class="oname">Ensemble boubou</span>
+            <span class="oprice">14 500 F</span>
+            <span class="ostatus">En route</span>
+          </div>
+          <div class="order-row">
+            <span class="oname">Tissu ankara 3m</span>
+            <span class="oprice">7 200 F</span>
+            <span class="ostatus">Livré</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Rejoins Sanù</p>
+    <h2 class="section-title reveal">Ton business mérite<br>mieux qu'un carnet.</h2>
+    <p class="reveal">Rejoins les premiers vendeurs qui transforment leur WhatsApp en vrai outil professionnel — gratuit pendant la bêta.</p>
+    <div class="cta-form-wrap reveal">
+      <a href="#rejoindre" class="msf-btn-next cta-anchor">
+        Rejoindre la liste d'attente
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="msf-hint">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="wordmark">san<em>ù</em></div>
+  <span>© 2025 Sanù · Cotonou, Bénin 🇧🇯</span>
+</footer>
+
+<script src="sanu.js"></script>
+</body>
+</html>
