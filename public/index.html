@@ -430,7 +430,6 @@
     .demo-chat {
       padding: 32px;
       background: #F5F5F5;
-      min-height: 400px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -979,16 +978,29 @@
     </p>
   </div>
 
-  <div class="demo-container">
-    <div class="demo-header">
-      <div class="demo-avatar">🤖</div>
-      <div class="demo-info">
-        <h3>Sanù Assistant</h3>
-        <p>Actif 24/7 · Répond en 2 secondes</p>
+  <div style="max-width: 412px; margin: 0 auto;">
+    <div style="background: #F5F5F7; border-radius: 42px; padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08) inset;">
+      <!-- Status bar -->
+      <div style="height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 0.75rem; color: #1D1D1F; font-weight: 600;">
+        <span>9:41</span>
+        <div style="display: flex; gap: 4px; align-items: center;">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1.5 5.5h13M12.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="1" y="3" width="11" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 5.5v1c0 .5.5 1 1.5 1s1.5-.5 1.5-1v-1c0-.5-.5-1-1.5-1s-1.5.5-1.5 1z" fill="currentColor"/></svg>
+        </div>
       </div>
-    </div>
-    <div class="demo-chat" id="demo-chat">
-      <!-- Messages will be added dynamically -->
+      
+      <div class="demo-container" style="border-radius: 32px; overflow: hidden; box-shadow: none; border: none; height: 847px; display: flex; flex-direction: column;">
+        <div class="demo-header">
+          <div class="demo-avatar">🤖</div>
+          <div class="demo-info">
+            <h3>Sanù Assistant</h3>
+            <p>Actif 24/7 · Répond en 2 secondes</p>
+          </div>
+        </div>
+        <div class="demo-chat" id="demo-chat" style="flex: 1; overflow-y: auto;">
+          <!-- Messages will be added dynamically -->
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1002,50 +1014,63 @@
 
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
     <!-- Chat demo -->
-    <div style="background: #ECE5DD; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 48px rgba(44,41,36,0.1);">
-      <div style="background: var(--green); padding: 14px 20px; display: flex; align-items: center; gap: 12px;">
-        <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🤖</div>
-        <div>
-          <div style="font-weight: 700; color: white; font-size: 0.9rem;">Sanù</div>
-          <div style="font-size: 0.72rem; color: rgba(255,255,255,0.65);">Répond instantanément</div>
+    <div style="max-width: 412px; margin: 0 auto;">
+      <div style="background: #F5F5F7; border-radius: 42px; padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08) inset;">
+        <!-- Status bar -->
+        <div style="height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 0.75rem; color: #1D1D1F; font-weight: 600;">
+          <span>9:41</span>
+          <div style="display: flex; gap: 4px; align-items: center;">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1.5 5.5h13M12.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="1" y="3" width="11" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 5.5v1c0 .5.5 1 1.5 1s1.5-.5 1.5-1v-1c0-.5-.5-1-1.5-1s-1.5.5-1.5 1z" fill="currentColor"/></svg>
+          </div>
         </div>
-      </div>
-      <div style="padding: 16px 14px; display: flex; flex-direction: column; gap: 8px; background: #ECE5DD; min-height: 300px;">
-        <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: #D9F5C1; border-radius: 10px 2px 10px 10px; align-self: flex-end;">
-          Combien j'ai gagné ce mois ?
-          <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:22 ✓✓</div>
-        </div>
-        <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: white; border-radius: 2px 10px 10px 10px; align-self: flex-start;">
-          <span style="font-weight: 700; font-size: 0.68rem; color: var(--green); display: block; margin-bottom: 3px;">Sanù 📊</span>
-          Voici ton résumé de février :
-          <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
-            <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
-              <span>Chiffre d'affaires</span>
-              <span style="font-weight: 700; color: var(--green);">187 500 F</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
-              <span>Commandes livrées</span>
-              <span style="font-weight: 700; color: var(--green);">34</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
-              <span>Top produit</span>
-              <span style="font-weight: 700; color: var(--green);">Robe wax 🥇</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.75rem;">
-              <span>En attente paiement</span>
-              <span style="font-weight: 700; color: var(--green);">2 commandes</span>
+        
+        <div style="border-radius: 32px; overflow: hidden; height: 847px; display: flex; flex-direction: column;">
+          <div style="background: var(--green); padding: 14px 20px; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🤖</div>
+            <div>
+              <div style="font-weight: 700; color: white; font-size: 0.9rem;">Sanù</div>
+              <div style="font-size: 0.72rem; color: rgba(255,255,255,0.65);">Répond instantanément</div>
             </div>
           </div>
-          <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:22 ✓✓</div>
-        </div>
-        <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: #D9F5C1; border-radius: 10px 2px 10px 10px; align-self: flex-end;">
-          Génère ma facture pour Mme Houénou
-          <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:23 ✓✓</div>
-        </div>
-        <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: white; border-radius: 2px 10px 10px 10px; align-self: flex-start;">
-          <span style="font-weight: 700; font-size: 0.68rem; color: var(--green); display: block; margin-bottom: 3px;">Sanù 🧾</span>
-          Facture #F-2025-041 générée ✅<br>PDF envoyé à Mme Houénou automatiquement.
-          <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:23 ✓✓</div>
+          <div style="padding: 16px 14px; display: flex; flex-direction: column; gap: 8px; background: #ECE5DD; flex: 1; overflow-y: auto;">
+            <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: #D9F5C1; border-radius: 10px 2px 10px 10px; align-self: flex-end;">
+              Combien j'ai gagné ce mois ?
+              <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:22 ✓✓</div>
+            </div>
+            <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: white; border-radius: 2px 10px 10px 10px; align-self: flex-start;">
+              <span style="font-weight: 700; font-size: 0.68rem; color: var(--green); display: block; margin-bottom: 3px;">Sanù 📊</span>
+              Voici ton résumé de février :
+              <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
+                  <span>Chiffre d'affaires</span>
+                  <span style="font-weight: 700; color: var(--green);">187 500 F</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
+                  <span>Commandes livrées</span>
+                  <span style="font-weight: 700; color: var(--green);">34</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.75rem;">
+                  <span>Top produit</span>
+                  <span style="font-weight: 700; color: var(--green);">Robe wax 🥇</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.75rem;">
+                  <span>En attente paiement</span>
+                  <span style="font-weight: 700; color: var(--green);">2 commandes</span>
+                </div>
+              </div>
+              <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:22 ✓✓</div>
+            </div>
+            <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: #D9F5C1; border-radius: 10px 2px 10px 10px; align-self: flex-end;">
+              Génère ma facture pour Mme Houénou
+              <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:23 ✓✓</div>
+            </div>
+            <div style="padding: 9px 12px; border-radius: 10px; font-size: 0.78rem; line-height: 1.5; max-width: 85%; background: white; border-radius: 2px 10px 10px 10px; align-self: flex-start;">
+              <span style="font-weight: 700; font-size: 0.68rem; color: var(--green); display: block; margin-bottom: 3px;">Sanù 🧾</span>
+              Facture #F-2025-041 générée ✅<br>PDF envoyé à Mme Houénou automatiquement.
+              <div style="font-size: 0.62rem; color: var(--text-muted); text-align: right; margin-top: 3px;">14:23 ✓✓</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1134,63 +1159,76 @@
       </div>
 
       <!-- Dashboard Visual -->
-      <div style="background: #1C1C1E; border-radius: 28px; padding: 28px 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.18); position: relative; overflow: hidden;">
-        <div style="position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(61,122,90,0.25), transparent 60%);"></div>
-        <div style="position: relative; z-index: 1;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <span style="font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 700; color: white;">Tableau de bord</span>
-            <span style="font-size: 0.7rem; color: rgba(255,255,255,0.4);">Février 2025</span>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
-            <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
-              <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Chiffre d'affaires</div>
-              <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">187 500<span style="font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4);"> F</span></div>
-              <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ +23% vs jan</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
-              <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Commandes</div>
-              <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">34</div>
-              <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ 8 de plus</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
-              <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Panier moyen</div>
-              <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">5 515<span style="font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4);"> F</span></div>
-              <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">Stable</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
-              <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Taux livraison</div>
-              <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">94<span style="font-size: 1rem;">%</span></div>
-              <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ Excellent</span>
+      <div style="max-width: 412px; margin: 0 auto;">
+        <div style="background: #F5F5F7; border-radius: 42px; padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.08) inset;">
+          <!-- Status bar -->
+          <div style="height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 0.75rem; color: #1D1D1F; font-weight: 600;">
+            <span>9:41</span>
+            <div style="display: flex; gap: 4px; align-items: center;">
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1.5 5.5h13M12.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="1" y="3" width="11" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 5.5v1c0 .5.5 1 1.5 1s1.5-.5 1.5-1v-1c0-.5-.5-1-1.5-1s-1.5.5-1.5 1z" fill="currentColor"/></svg>
             </div>
           </div>
-          <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px;">
-            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.35); margin-bottom: 12px;">VENTES PAR SEMAINE</div>
-            <div style="display: flex; align-items: flex-end; gap: 6px; height: 52px;">
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 40%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 55%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 48%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 72%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 60%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 85%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 68%;"></div>
-              <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 100%;"></div>
-            </div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 7px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
-              <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Robe wax indigo × 2</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">19 000 F</span>
-              <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">Livré</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
-              <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Ensemble boubou</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">14 500 F</span>
-              <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">En route</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
-              <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Tissu ankara 3m</span>
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">7 200 F</span>
-              <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">Livré</span>
+          
+          <div style="background: #1C1C1E; border-radius: 32px; padding: 28px 22px; position: relative; overflow-y: auto; height: 847px;">
+            <div style="position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(61,122,90,0.25), transparent 60%); pointer-events: none;"></div>
+            <div style="position: relative; z-index: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <span style="font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 700; color: white;">Tableau de bord</span>
+                <span style="font-size: 0.7rem; color: rgba(255,255,255,0.4);">Février 2025</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+                <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Chiffre d'affaires</div>
+                  <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">187 500<span style="font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4);"> F</span></div>
+                  <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ +23% vs jan</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Commandes</div>
+                  <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">34</div>
+                  <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ 8 de plus</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Panier moyen</div>
+                  <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">5 515<span style="font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4);"> F</span></div>
+                  <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">Stable</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">Taux livraison</div>
+                  <div style="font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 700; color: white;">94<span style="font-size: 1rem;">%</span></div>
+                  <span style="display: inline-block; font-size: 0.62rem; padding: 2px 7px; border-radius: 100px; margin-top: 4px; background: rgba(106,171,136,0.25); color: var(--green-m);">↑ Excellent</span>
+                </div>
+              </div>
+              <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px;">
+                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.35); margin-bottom: 12px;">VENTES PAR SEMAINE</div>
+                <div style="display: flex; align-items: flex-end; gap: 6px; height: 52px;">
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 40%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 55%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 48%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 72%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 60%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 85%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: rgba(106,171,136,0.3); height: 68%;"></div>
+                  <div style="flex: 1; border-radius: 4px 4px 0 0; background: var(--green-m); height: 100%;"></div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
+                  <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Robe wax indigo × 2</span>
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">19 000 F</span>
+                  <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">Livré</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
+                  <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Ensemble boubou</span>
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">14 500 F</span>
+                  <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">En route</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); border-radius: 9px; padding: 9px 12px;">
+                  <span style="font-size: 0.72rem; color: rgba(255,255,255,0.75);">Tissu ankara 3m</span>
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--green-m);">7 200 F</span>
+                  <span style="font-size: 0.62rem; padding: 2px 8px; border-radius: 100px; background: rgba(106,171,136,0.2); color: var(--green-m);">Livré</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1416,13 +1454,13 @@
 
   // Demo conversation animation
   const messages = [
-    { type: 'customer', sender: 'Mireille', text: 'Bonjour, tu as des robes wax en stock ?', delay: 500 },
-    { type: 'sanu', sender: 'Sanù', text: 'Bonjour Mireille ! Oui, j\'ai 12 modèles de robes wax disponibles. Quelle taille cherches-tu ?', delay: 1500 },
-    { type: 'customer', sender: 'Mireille', text: 'Taille M, motif coloré', delay: 2500 },
+    { type: 'customer', sender: 'Aïcha', text: 'Bonjour, tu as des robes wax en stock ?', delay: 500 },
+    { type: 'sanu', sender: 'Sanù', text: 'Bonjour Aïcha ! Oui, j\'ai 12 modèles de robes wax disponibles. Quelle taille cherches-tu ?', delay: 1500 },
+    { type: 'customer', sender: 'Aïcha', text: 'Taille M, motif coloré', delay: 2500 },
     { type: 'sanu', sender: 'Sanù', text: 'Parfait ! J\'ai 3 robes qui correspondent :\n\n🔸 Robe ankara multicolore - 9 500 F\n🔸 Robe wax tropical - 11 000 F\n🔸 Robe kitenge festif - 12 500 F\n\nLaquelle t\'intéresse ?', delay: 3800 },
-    { type: 'customer', sender: 'Mireille', text: 'La tropical à 11 000, tu peux faire 9 000 ?', delay: 5500 },
+    { type: 'customer', sender: 'Aïcha', text: 'La tropical à 11 000, tu peux faire 9 000 ?', delay: 5500 },
     { type: 'sanu', sender: 'Sanù', text: 'Je peux te faire 10 000 F, c\'est mon dernier prix pour ce modèle 😊', delay: 6800 },
-    { type: 'customer', sender: 'Mireille', text: 'Ok, je prends !', delay: 8000 },
+    { type: 'customer', sender: 'Aïcha', text: 'Ok, je prends !', delay: 8000 },
     { type: 'sanu', sender: 'Sanù', text: '✅ Commande confirmée !\n\nRobe wax tropical - Taille M\nPrix : 10 000 F CFA\n\nTu peux payer par :\n• Mobile Money : +229 XX XX XX XX\n• Virement : Compte XXX\n\nDès réception, je te confirme et on livre sous 24h.', delay: 9200 }
   ];
 
