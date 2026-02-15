@@ -172,6 +172,177 @@
       .input-group{flex-direction:column;border-radius:14px}
       .btn-join{padding:14px;justify-content:center;border-radius:0 0 12px 12px}
     }
+
+    /* ── MULTI-STEP FORM ── */
+    .msf-wrap { margin-top: 40px; animation: rise 0.7s 0.24s ease both; }
+
+    .msf-step { display: none; }
+    .msf-step.active { display: block; animation: rise 0.35s ease both; }
+
+    .msf-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .msf-dot {
+      height: 3px;
+      flex: 1;
+      border-radius: 10px;
+      background: var(--sand3);
+      transition: background 0.3s;
+    }
+    .msf-dot.done { background: var(--green); }
+
+    .msf-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .msf-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .msf-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .msf-chip {
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1.5px solid var(--sand3);
+      background: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+    }
+    .msf-chip:hover { border-color: var(--green-m); color: var(--green); }
+    .msf-chip.sel {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .msf-textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--white);
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 80px;
+    }
+    .msf-textarea:focus {
+      border-color: var(--green-m);
+      box-shadow: 0 2px 16px rgba(61,122,90,0.1);
+    }
+    .msf-textarea::placeholder { color: #BDB5A8; }
+
+    .msf-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .msf-input:focus {
+      border-color: var(--green-m);
+      box-shadow: 0 2px 16px rgba(61,122,90,0.1);
+    }
+    .msf-input::placeholder { color: #BDB5A8; }
+
+    .msf-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      align-items: center;
+    }
+    .msf-btn-next {
+      flex: 1;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 20px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .msf-btn-next:hover:not(:disabled) { background: #2e5e44; transform: translateY(-1px); }
+    .msf-btn-next:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .msf-btn-back {
+      background: transparent;
+      border: 1.5px solid var(--sand3);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .msf-btn-back:hover { border-color: var(--green-m); color: var(--green); }
+
+    .msf-hint { margin-top: 10px; font-size: 0.76rem; color: var(--muted); }
+    .msf-hint span { color: var(--green); font-weight: 600; }
+
+    .msf-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--green-l);
+      border: 1px solid rgba(61,122,90,0.18);
+      border-radius: 18px;
+      animation: rise 0.4s ease;
+      margin-top: 40px;
+    }
+    .msf-success .s-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .msf-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .msf-success p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
   </style>
 </head>
 <body>
@@ -190,19 +361,99 @@
       <div class="tag"><span class="pip"></span> Bêta fermée · Bénin 🇧🇯</div>
       <h1>Vends sur WhatsApp.<br><span class="hi">Sans le chaos.</span></h1>
       <p class="hero-sub">Sanù est ton assistant business dans WhatsApp. Il gère tes produits, tes paiements et ta comptabilité — pendant que toi, tu vends.</p>
-      <div class="waitlist-wrap" id="rejoindre">
-        <div class="input-group" id="ig1">
-          <input type="tel" id="p1" placeholder="Ton numéro WhatsApp (+229…)" />
-          <button class="btn-join" onclick="doJoin('p1','ig1','s1','h1')">
-            Rejoindre
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+      <div class="msf-wrap" id="rejoindre">
+        <!-- Progress dots -->
+        <div class="msf-progress" id="msf-progress">
+          <div class="msf-dot done" id="dot-0"></div>
+          <div class="msf-dot" id="dot-1"></div>
+          <div class="msf-dot" id="dot-2"></div>
+          <div class="msf-dot" id="dot-3"></div>
         </div>
-        <div class="success-box" id="s1">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div><p>Tu es sur la liste ✓</p><small>On te contacte sur WhatsApp à l'ouverture bêta.</small></div>
+
+        <!-- Étape 1 — Ce que tu vends -->
+        <div class="msf-step active" id="msf-step-0">
+          <span class="msf-label">Étape 1 / 4</span>
+          <p class="msf-question">Tu vends quoi principalement ?</p>
+          <div class="msf-chips" id="chips-sells">
+            <span class="msf-chip" data-val="Vêtements &amp; tissus">👗 Vêtements &amp; tissus</span>
+            <span class="msf-chip" data-val="Alimentation &amp; boissons">🥘 Alimentation &amp; boissons</span>
+            <span class="msf-chip" data-val="Électronique &amp; téléphones">📱 Électronique</span>
+            <span class="msf-chip" data-val="Cosmétiques &amp; beauté">💄 Cosmétiques &amp; beauté</span>
+            <span class="msf-chip" data-val="Artisanat &amp; déco">🏺 Artisanat &amp; déco</span>
+            <span class="msf-chip" data-val="Services">🛠️ Services</span>
+            <span class="msf-chip" data-val="Autre">Autre</span>
+          </div>
+          <textarea class="msf-textarea" id="sells-other" placeholder="Précise si tu veux…" style="display:none; margin-top:4px;" rows="2"></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-next" onclick="msfNext(0)">
+              Continuer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <p class="msf-hint">🔒 Zéro spam. <span>+340 vendeurs</span> déjà inscrits.</p>
         </div>
-        <p class="form-hint" id="h1">🔒 Zéro spam. <span>+340 vendeurs</span> déjà inscrits.</p>
+
+        <!-- Étape 2 — Difficultés -->
+        <div class="msf-step" id="msf-step-1">
+          <span class="msf-label">Étape 2 / 4</span>
+          <p class="msf-question">Quelles sont tes galères du quotidien ?</p>
+          <div class="msf-chips multi" id="chips-pain">
+            <span class="msf-chip" data-val="Perdre des commandes dans les messages">😵 Perdre des commandes</span>
+            <span class="msf-chip" data-val="Gérer les paiements et impayés">💸 Paiements &amp; impayés</span>
+            <span class="msf-chip" data-val="Pas de factures ni reçus">🧾 Pas de factures</span>
+            <span class="msf-chip" data-val="Pas de visibilité sur mes ventes">📊 Pas de visibilité</span>
+            <span class="msf-chip" data-val="Trop de temps passé à répondre aux clients">⏱️ Trop de temps client</span>
+            <span class="msf-chip" data-val="Gérer le stock">📦 Gérer le stock</span>
+          </div>
+          <textarea class="msf-textarea" id="pain-extra" placeholder="Autre chose ? Dis-moi librement…" style="margin-top:10px;" rows="2"></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-back" onclick="msfBack(1)">←</button>
+            <button class="msf-btn-next" onclick="msfNext(1)">
+              Continuer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Étape 3 — Automatiser -->
+        <div class="msf-step" id="msf-step-2">
+          <span class="msf-label">Étape 3 / 4</span>
+          <p class="msf-question">Si tu pouvais tout automatiser, tu commencerais par quoi ?</p>
+          <div class="msf-chips multi" id="chips-auto">
+            <span class="msf-chip" data-val="Prendre les commandes automatiquement">📥 Prendre les commandes</span>
+            <span class="msf-chip" data-val="Envoyer les reçus et factures">🧾 Reçus &amp; factures</span>
+            <span class="msf-chip" data-val="Suivre les paiements">💳 Suivre les paiements</span>
+            <span class="msf-chip" data-val="Gérer mon stock">📦 Mon stock</span>
+            <span class="msf-chip" data-val="Voir mes stats de ventes">📊 Mes stats</span>
+            <span class="msf-chip" data-val="Répondre aux clients">💬 Répondre aux clients</span>
+          </div>
+          <textarea class="msf-textarea" id="auto-extra" placeholder="Autre chose ?" style="margin-top:10px;" rows="2"></textarea>
+          <div class="msf-actions">
+            <button class="msf-btn-back" onclick="msfBack(2)">←</button>
+            <button class="msf-btn-next" onclick="msfNext(2)">
+              Continuer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Étape 4 — Contact -->
+        <div class="msf-step" id="msf-step-3">
+          <span class="msf-label">Étape 4 / 4</span>
+          <p class="msf-question">On te contacte comment sur WhatsApp ?</p>
+          <input class="msf-input" type="tel" id="msf-contact" placeholder="Ton numéro (+229…)" />
+          <div class="msf-actions">
+            <button class="msf-btn-back" onclick="msfBack(3)">←</button>
+            <button class="msf-btn-next" id="msf-submit-btn" onclick="msfSubmit()">
+              Rejoindre Sanù ✓
+            </button>
+          </div>
+          <p class="msf-hint" style="margin-top:12px;">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
+        </div>
+
+        <!-- Succès -->
+        <div class="msf-success" id="msf-success">
+          <div class="s-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h3>Tu es sur la liste ✓</h3>
+          <p>Merci ! On te contacte sur WhatsApp très bientôt.<br>Tu fais partie des premiers à tester Sanù.</p>
+        </div>
       </div>
       <div class="proof">
         <div class="faces"><span>👩🏿</span><span>👨🏾</span><span>👩🏽</span><span>👨🏿</span></div>
@@ -322,19 +573,12 @@
     <p class="eyebrow reveal">Rejoins Sanù</p>
     <h2 class="section-title reveal">Ton business mérite<br>mieux qu'un carnet.</h2>
     <p class="reveal">Rejoins les premiers vendeurs qui transforment leur WhatsApp en vrai outil professionnel — gratuit pendant la bêta.</p>
-    <div class="cta-form-wrap">
-      <div class="input-group reveal" id="ig2">
-        <input type="tel" id="p2" placeholder="Ton numéro WhatsApp (+229…)" />
-        <button class="btn-join" onclick="doJoin('p2','ig2','s2','h2')">
-          Rejoindre
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-      <div class="success-box" id="s2" style="margin-top:0;">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div><p>Bienvenue dans Sanù ✓</p><small>On te contacte sur WhatsApp très bientôt.</small></div>
-      </div>
-      <p class="form-hint reveal" id="h2">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
+    <div class="cta-form-wrap reveal">
+      <a href="#rejoindre" class="msf-btn-next" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; border-radius:14px; padding:14px 28px; font-size:0.95rem;">
+        Rejoindre la liste d'attente
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="form-hint" style="margin-top:12px;">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
     </div>
   </div>
 </section>
@@ -345,18 +589,8 @@
 </footer>
 
 <script>
-  // ════════════════════════════════════════════════════════════════
-  // ▶  CONFIGURATION — ÉTAPE UNIQUE À FAIRE AVANT MISE EN LIGNE
-  //
-  //    1. Va sur script.google.com
-  //    2. Crée un nouveau projet et colle le contenu de sanu_apps_script.js
-  //    3. Remplace SHEET_ID dans le script par l'ID de ton Google Sheet
-  //    4. Déploie → Nouvelle déployment → Web app
-  //       • Exécuter en tant que : Moi
-  //       • Accès : Tout le monde
-  //    5. Copie l'URL générée et remplace TON_SCRIPT_ID_ICI ci-dessous
-  //
-  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz90fPFRJS0OPP1JlA_HfXOsbWOTZY5U-G4n9ApZvlR9Bgl0Lf-CC9IPb5qh-NQOBf0/exec";
+  // ══ CONFIG ══════════════════════════════════════════════════════
+  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby0s1nM1Q4Uly4HRX4fSbvuA61FCS7p7GGVy8zyWsi3a6F_vVZditb2rd4QdYQ5E3Cj/exec";
   // ════════════════════════════════════════════════════════════════
 
   // Scroll reveal
@@ -373,76 +607,101 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ── Waitlist — envoie vers Google Sheets ────────────────────────
-  async function doJoin(inputId, groupId, successId, hintId) {
-    const inp = document.getElementById(inputId);
-    const val = inp.value.trim();
+  // ── Multi-step form state ──
+  const msfData = { what_sells: '', difficulties: '', automate: '', contact: '' };
 
-    // Validation basique
-    if (!val) {
-      inp.style.background = '#fff3f3';
-      inp.placeholder = 'Entre ton numéro WhatsApp 👆';
-      setTimeout(() => {
-        inp.style.background = '';
-        inp.placeholder = 'Ton numéro WhatsApp (+229…)';
-      }, 1800);
-      return;
-    }
-
-    // Bouton en état loading (spinner)
-    const btn = inp.nextElementSibling;
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-      stroke="white" stroke-width="2.5"
-      style="animation:spin 0.8s linear infinite">
-      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-    </svg>`;
-    btn.disabled = true;
-    inp.disabled = true;
-
-    const source = inputId === 'p1' ? 'hero' : 'cta';
-
-    try {
-      // ── Envoi vers Google Sheets via Apps Script ──
-      // mode "no-cors" est requis : Apps Script ne renvoie pas les
-      // headers CORS — mais la requête POST est bien reçue côté Google.
-      await fetch(WEBHOOK_URL, {
-        method : "POST",
-        mode   : "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body   : JSON.stringify({ phone: val, source })
+  // Chip toggle (single or multi)
+  document.querySelectorAll('.msf-chips').forEach(group => {
+    const multi = group.classList.contains('multi');
+    group.querySelectorAll('.msf-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (multi) {
+          chip.classList.toggle('sel');
+        } else {
+          group.querySelectorAll('.msf-chip').forEach(c => c.classList.remove('sel'));
+          chip.classList.add('sel');
+          // Show textarea for "Autre"
+          const ta = document.getElementById('sells-other');
+          if (ta) ta.style.display = chip.dataset.val === 'Autre' ? 'block' : 'none';
+        }
       });
-    } catch (err) {
-      // Réseau KO → sauvegarde locale pour ne pas perdre l'entrée
-      console.warn("[Sanù] Webhook indisponible, stockage local :", err);
-      try {
-        const pending = JSON.parse(sessionStorage.getItem('sanu_pending') || '[]');
-        pending.push({ phone: val, source, ts: new Date().toISOString() });
-        sessionStorage.setItem('sanu_pending', JSON.stringify(pending));
-      } catch(_) {}
-    }
-
-    // Affiche le succès dans tous les cas (UX prioritaire)
-    document.getElementById(groupId).style.display = 'none';
-    const hint = document.getElementById(hintId);
-    if (hint) hint.style.display = 'none';
-    const suc = document.getElementById(successId);
-    suc.style.display   = 'flex';
-    suc.style.animation = 'rise 0.4s ease';
-
-    btn.innerHTML = originalHTML;
-    btn.disabled  = false;
-    inp.disabled  = false;
-  }
-
-  // Touche Entrée
-  document.querySelectorAll('input[type="tel"]').forEach(inp => {
-    inp.addEventListener('keydown', e => {
-      if (e.key !== 'Enter') return;
-      if (inp.id === 'p1') doJoin('p1', 'ig1', 's1', 'h1');
-      else                 doJoin('p2', 'ig2', 's2', 'h2');
     });
   });
+
+  function msfNext(step) {
+    // Collect data
+    if (step === 0) {
+      const sel = [...document.querySelectorAll('#chips-sells .sel')].map(c => c.dataset.val).join(', ');
+      const other = document.getElementById('sells-other').value.trim();
+      msfData.what_sells = sel + (other ? ' — ' + other : '');
+    }
+    if (step === 1) {
+      const chips = [...document.querySelectorAll('#chips-pain .sel')].map(c => c.dataset.val).join(', ');
+      const extra = document.getElementById('pain-extra').value.trim();
+      msfData.difficulties = [chips, extra].filter(Boolean).join(' / ');
+    }
+    if (step === 2) {
+      const chips = [...document.querySelectorAll('#chips-auto .sel')].map(c => c.dataset.val).join(', ');
+      const extra = document.getElementById('auto-extra').value.trim();
+      msfData.automate = [chips, extra].filter(Boolean).join(' / ');
+    }
+
+    goToStep(step + 1);
+  }
+
+  function msfBack(step) {
+    goToStep(step - 1);
+  }
+
+  function goToStep(n) {
+    document.querySelectorAll('.msf-step').forEach((s, i) => {
+      s.classList.toggle('active', i === n);
+    });
+    document.querySelectorAll('.msf-dot').forEach((d, i) => {
+      d.classList.toggle('done', i <= n);
+    });
+  }
+
+  async function msfSubmit() {
+    const contact = document.getElementById('msf-contact').value.trim();
+    if (!contact) {
+      const inp = document.getElementById('msf-contact');
+      inp.style.borderColor = '#e57373';
+      inp.placeholder = 'Entre ton numéro WhatsApp 👆';
+      setTimeout(() => { inp.style.borderColor = ''; inp.placeholder = 'Ton numéro (+229…)'; }, 1800);
+      return;
+    }
+    msfData.contact = contact;
+    msfData.source  = 'landing';
+
+    // Loading
+    const btn = document.getElementById('msf-submit-btn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>';
+    btn.disabled = true;
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method : 'POST',
+        mode   : 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(msfData)
+      });
+    } catch(err) {
+      console.warn('[Sanù] Webhook indisponible:', err);
+    }
+
+    // Succès
+    document.querySelector('.msf-progress').style.display = 'none';
+    document.querySelectorAll('.msf-step').forEach(s => s.style.display = 'none');
+    const suc = document.getElementById('msf-success');
+    suc.style.display = 'flex';
+
+    btn.innerHTML = orig;
+    btn.disabled  = false;
+  }
+
+  // @keyframes spin already defined inline in button
 </script>
 </body>
 </html>
