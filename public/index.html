@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanù — Vends sur WhatsApp, sans le chaos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #F9F5EE;
+      --sand2:   #F2EDE3;
+      --sand3:   #E8DFD0;
+      --green:   #3D7A5A;
+      --green-l: #EAF3EE;
+      --green-m: #6AAB88;
+      --text:    #2C2924;
+      --muted:   #8A8078;
+      --white:   #FFFFFF;
+      --border:  rgba(44,41,36,0.09);
+      --radius:  18px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SUBTLE GRAIN ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(249,245,238,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .wordmark em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: #2e5e44; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      padding: 110px 0 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    .hero-left { padding-right: 60px; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green-l);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      animation: rise 0.7s ease both;
+    }
+    .tag .pip {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.6rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      animation: rise 0.7s 0.08s ease both;
+    }
+    h1 .hi {
+      display: block;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 420px;
+      animation: rise 0.7s 0.16s ease both;
+    }
+
+    /* ── FORM ── */
+    .waitlist-wrap {
+      margin-top: 40px;
+      animation: rise 0.7s 0.24s ease both;
+    }
+
+    .input-group {
+      display: flex;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(61,122,90,0.07);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-group:focus-within {
+      border-color: var(--green-m);
+      box-shadow: 0 2px 24px rgba(61,122,90,0.14);
+    }
+
+    .input-group input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 15px 18px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      background: transparent;
+      color: var(--text);
+    }
+    .input-group input::placeholder { color: #BDB5A8; }
+
+    .btn-join {
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 0 24px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-join:hover { background: #2e5e44; }
+    .btn-join svg { width: 15px; height: 15px; }
+
+    .form-hint {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .form-hint span { color: var(--green); font-weight: 600; }
+
+    /* ── SUCCESS ── */
+    .success-box {
+      display: none;
+      align-items: center;
+      gap: 16px;
+      background: var(--green-l);
+      border: 1px solid rgba(61,122,90,0.2);
+      border-radius: 14px;
+      padding: 18px 22px;
+    }
+    .success-box .icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .success-box p { font-size: 0.92rem; font-weight: 600; color: var(--green); }
+    .success-box small { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 2px; }
+
+    /* ── SOCIAL PROOF ── */
+    .proof {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: rise 0.7s 0.32s ease both;
+    }
+    .faces {
+      display: flex;
+    }
+    .faces span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--sand);
+      background: var(--sand3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      margin-left: -8px;
+    }
+    .faces span:first-child { margin-left: 0; }
+    .proof-text { font-size: 0.82rem; color: var(--muted); }
+    .proof-text strong { color: var(--text); }
+
+    /* ── HERO RIGHT — CHAT ILLUSTRATION ── */
+    .hero-right {
+      position: relative;
+      animation: rise 0.7s 0.18s ease both;
+    }
+
+    .phone-frame {
+      width: 280px;
+      margin: 0 auto;
+      background: #ECE5DD;
+      border-radius: 32px;
+      padding: 22px 16px 28px;
+      box-shadow:
+        0 30px 80px rgba(44,41,36,0.12),
+        0 6px 20px rgba(44,41,36,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+      position: relative;
+    }
+
+    .phone-top {
+      background: var(--green);
+      border-radius: 16px 16px 0 0;
+      padding: 14px 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: -22px -16px 0;
+    }
+    .phone-top-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--green-l);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .phone-top-info .name { font-size: 0.85rem; font-weight: 700; color: white; }
+    .phone-top-info .status { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+
+    .chat-body {
+      padding: 14px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .msg {
+      max-width: 88%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      position: relative;
+    }
+    .msg .ts {
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 3px;
+    }
+    .msg.in {
+      background: white;
+      border-radius: 2px 10px 10px 10px;
+      align-self: flex-start;
+    }
+    .msg.out {
+      background: #D9F5C1;
+      border-radius: 10px 2px 10px 10px;
+      align-self: flex-end;
+    }
+    .msg .label {
+      font-weight: 700;
+      color: var(--green);
+      font-size: 0.7rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .msg .product-card {
+      background: var(--sand);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-top: 6px;
+      border-left: 3px solid var(--green);
+    }
+    .msg .product-card .pname { font-weight: 700; font-size: 0.74rem; }
+    .msg .product-card .pprice { color: var(--green); font-weight: 700; font-size: 0.8rem; margin-top: 2px; }
+    .msg .product-card .plink {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--green);
+      color: white;
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .msg-typing {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      background: white;
+      border-radius: 2px 10px 10px 10px;
+      padding: 10px 14px;
+      width: fit-content;
+    }
+    .dot-t {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: bounce 1.2s infinite;
+    }
+    .dot-t:nth-child(2) { animation-delay: 0.15s; }
+    .dot-t:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes bounce {
+      0%,60%,100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { position: relative; z-index: 1; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { padding: 100px 0; }
+
+    .how-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      gap: 24px;
+    }
+    .how-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 340px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 8px);
+      right: calc(12.5% + 8px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--green-m), var(--sand3));
+      z-index: 0;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--sand3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 2px 12px rgba(61,122,90,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .step-item:hover .step-circle {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(61,122,90,0.13);
+    }
+
+    .step-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .step-item p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── SIMPLICITY SECTION ── */
+    .simple-section { padding: 80px 0 100px; }
+
+    .simple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 56px;
+    }
+
+    .chat-demo {
+      background: #ECE5DD;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(44,41,36,0.1);
+    }
+
+    .chat-header {
+      background: var(--green);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-header-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .chat-header-info .cname { font-weight: 700; color: white; font-size: 0.9rem; }
+    .chat-header-info .cstatus { font-size: 0.72rem; color: rgba(255,255,255,0.65); }
+
+    .chat-messages {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cm {
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      max-width: 85%;
+    }
+    .cm .lbl {
+      font-weight: 700;
+      font-size: 0.68rem;
+      color: var(--green);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .cm .time-s {
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 3px;
+    }
+    .cm.recv {
+      background: white;
+      border-radius: 2px 10px 10px 10px;
+      align-self: flex-start;
+    }
+    .cm.sent {
+      background: #D9F5C1;
+      border-radius: 10px 2px 10px 10px;
+      align-self: flex-end;
+    }
+    .cm .stat-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.75rem;
+    }
+    .cm .stat-line:last-child { border-bottom: none; padding-bottom: 0; }
+    .cm .stat-val { font-weight: 700; color: var(--green); }
+
+    .simple-points {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .simple-point {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .sp-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--green-l);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .sp-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .sp-text p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── APP COMPLEMENT ── */
+    .app-section { padding: 80px 0 100px; background: var(--sand2); }
+
+    .app-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 56px;
+    }
+
+    .app-points {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .app-point {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 22px 24px;
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .app-point:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 24px rgba(61,122,90,0.08);
+    }
+    .app-point-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--green-l);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .app-point h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .app-point p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .app-visual {
+      background: #1C1C1E;
+      border-radius: 28px;
+      padding: 28px 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .app-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 20%, rgba(61,122,90,0.25), transparent 60%);
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .dash-header .dh-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+    }
+    .dash-header .dh-date {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .kpi {
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .kpi .kpi-label { font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .kpi .kpi-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: white; }
+    .kpi .kpi-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      border-radius: 100px;
+      margin-top: 4px;
+      background: rgba(106,171,136,0.25);
+      color: var(--green-m);
+    }
+
+    .dash-chart {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .dash-chart-label { font-size: 0.65rem; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 52px;
+    }
+    .bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: rgba(106,171,136,0.3);
+      transition: background 0.2s;
+    }
+    .bar.hi { background: var(--green-m); }
+
+    .dash-orders {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 9px;
+      padding: 9px 12px;
+    }
+    .order-row .oname { font-size: 0.72rem; color: rgba(255,255,255,0.75); }
+    .order-row .oprice { font-size: 0.75rem; font-weight: 700; color: var(--green-m); }
+    .order-row .ostatus {
+      font-size: 0.62rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: rgba(106,171,136,0.2);
+      color: var(--green-m);
+    }
+
+    /* ── BRIDGE CALLOUT ── */
+    .bridge {
+      background: var(--green-l);
+      border-radius: 20px;
+      padding: 28px 32px;
+      border: 1px solid rgba(61,122,90,0.15);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 56px;
+    }
+    .bridge-icon { font-size: 2rem; flex-shrink: 0; }
+    .bridge-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--green);
+    }
+    .bridge-text p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta-section .section-title { margin-bottom: 14px; }
+    .cta-section p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 44px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .cta-form-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.vis { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 60px;
+        text-align: center;
+      }
+      .hero-left { padding-right: 0; }
+      .hero-sub { margin: 16px auto 0; }
+      .waitlist-wrap { max-width: 480px; margin: 32px auto 0; }
+      .proof { justify-content: center; }
+      .hero-right { margin-top: 48px; }
+      .how-header { flex-direction: column; align-items: flex-start; }
+      .how-header p { text-align: left; }
+      .steps-row { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .steps-row::before { display: none; }
+      .simple-grid, .app-grid { grid-template-columns: 1fr; }
+      .section-inner, .app-inner { padding: 0 24px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .steps-row { grid-template-columns: 1fr; }
+      .input-group { flex-direction: column; border-radius: 14px; }
+      .btn-join { padding: 14px; justify-content: center; border-radius: 0 0 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wordmark">san<em>ù</em></div>
+  <a href="#rejoindre" class="nav-cta">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Rejoindre la bêta
+  </a>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="tag"><span class="pip"></span> Bêta fermée · Bénin 🇧🇯</div>
+      <h1>Vends sur WhatsApp.<br><span class="hi">Sans le chaos.</span></h1>
+      <p class="hero-sub">
+        Sanù est ton assistant business dans WhatsApp. Il gère tes produits, tes paiements et ta comptabilité — pendant que toi, tu vends.
+      </p>
+      <div class="waitlist-wrap" id="rejoindre">
+        <div class="input-group" id="ig1">
+          <input type="tel" id="p1" placeholder="Ton numéro WhatsApp (+229…)" />
+          <button class="btn-join" onclick="doJoin('p1','ig1','s1','h1')">
+            Rejoindre
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="success-box" id="s1">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <p>Tu es sur la liste ✓</p>
+            <small>On te contacte sur WhatsApp à l'ouverture bêta.</small>
+          </div>
+        </div>
+        <p class="form-hint" id="h1">🔒 Zéro spam. <span>+340 vendeurs</span> déjà inscrits.</p>
+      </div>
+      <div class="proof">
+        <div class="faces">
+          <span>👩🏿</span><span>👨🏾</span><span>👩🏽</span><span>👨🏿</span>
+        </div>
+        <span class="proof-text"><strong>340+ vendeurs</strong> sur liste d'attente</span>
+      </div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="hero-right">
+      <div class="phone-frame">
+        <div class="phone-top">
+          <div class="phone-top-avatar">🤖</div>
+          <div class="phone-top-info">
+            <div class="name">Sanù Assistant</div>
+            <div class="status">En ligne</div>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Bonjour Fatoumata ! 👋 Que veux-tu faire aujourd'hui ?
+            <div class="ts">09:01 ✓✓</div>
+          </div>
+          <div class="msg out">
+            Ajouter un produit
+            <div class="ts">09:02 ✓✓</div>
+          </div>
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Parfait ! Donne-moi : nom, prix et une photo 📸
+            <div class="ts">09:02 ✓✓</div>
+          </div>
+          <div class="msg out">
+            Robe wax indigo — 9 500 F CFA
+            <div class="ts">09:03 ✓✓</div>
+          </div>
+          <div class="msg in">
+            <span class="label">Sanù</span>
+            Produit créé ✅ Voici ton lien :
+            <div class="product-card">
+              <div class="pname">🛍️ Robe wax indigo</div>
+              <div class="pprice">9 500 F CFA</div>
+              <span class="plink">→ Lien de commande</span>
+            </div>
+            <div class="ts">09:03 ✓✓</div>
+          </div>
+          <div class="msg-typing">
+            <div class="dot-t"></div>
+            <div class="dot-t"></div>
+            <div class="dot-t"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <div class="how-header reveal">
+      <div>
+        <p class="eyebrow">Comment ça marche</p>
+        <h2 class="section-title">Simple comme<br>envoyer un message.</h2>
+      </div>
+      <p>Pas d'app à installer, pas de formation. Si tu sais utiliser WhatsApp, tu sais utiliser Sanù.</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-item reveal">
+        <div class="step-circle">💬</div>
+        <h3>Tu enregistres Sanù</h3>
+        <p>Un numéro WhatsApp à ajouter à tes contacts. C'est tout. Aucune inscription compliquée.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">📦</div>
+        <h3>Tu ajoutes tes produits</h3>
+        <p>Envoie nom, prix et photo en message. Sanù crée le produit et génère un lien de commande en 3 secondes.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">🔗</div>
+        <h3>Tu partages le lien</h3>
+        <p>Colle le lien en statut WhatsApp ou envoie-le à tes clients. Ils commandent directement, sans friction.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">✅</div>
+        <h3>Sanù gère le reste</h3>
+        <p>Paiements, commandes, factures, comptabilité — tout se fait automatiquement. Toi tu encaisses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SIMPLICITY SECTION -->
+<section class="simple-section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">La simplicité avant tout</p>
+    <h2 class="section-title reveal">Pas de formulaires.<br>Pas de tableaux compliqués.<br>Juste une conversation.</h2>
+
+    <div class="simple-grid">
+      <!-- Chat demo -->
+      <div class="chat-demo reveal">
+        <div class="chat-header">
+          <div class="chat-header-av">🤖</div>
+          <div class="chat-header-info">
+            <div class="cname">Sanù</div>
+            <div class="cstatus">Répond instantanément</div>
+          </div>
+        </div>
+        <div class="chat-messages">
+          <div class="cm sent">
+            Combien j'ai gagné ce mois ?
+            <div class="time-s">14:22 ✓✓</div>
+          </div>
+          <div class="cm recv">
+            <span class="lbl">Sanù 📊</span>
+            Voici ton résumé de février :
+            <div style="margin-top:8px; display:flex; flex-direction:column; gap:4px;">
+              <div class="stat-line">
+                <span>Chiffre d'affaires</span>
+                <span class="stat-val">187 500 F</span>
+              </div>
+              <div class="stat-line">
+                <span>Commandes livrées</span>
+                <span class="stat-val">34</span>
+              </div>
+              <div class="stat-line">
+                <span>Top produit</span>
+                <span class="stat-val">Robe wax 🥇</span>
+              </div>
+              <div class="stat-line">
+                <span>En attente paiement</span>
+                <span class="stat-val">2 commandes</span>
+              </div>
+            </div>
+            <div class="time-s">14:22 ✓✓</div>
+          </div>
+          <div class="cm sent">
+            Génère ma facture pour Mme Houénou
+            <div class="time-s">14:23 ✓✓</div>
+          </div>
+          <div class="cm recv">
+            <span class="lbl">Sanù 🧾</span>
+            Facture #F-2025-041 générée ✅<br>PDF envoyé à Mme Houénou automatiquement.
+            <div class="time-s">14:23 ✓✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Points -->
+      <div class="simple-points">
+        <div class="simple-point reveal">
+          <div class="sp-icon">🗣️</div>
+          <div class="sp-text">
+            <h3>Tu parles, Sanù comprend</h3>
+            <p>Pose tes questions en français naturel : "Combien j'ai fait aujourd'hui ?", "Mes commandes en attente ?", "Génère une facture." — Sanù répond immédiatement.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">⚡</div>
+          <div class="sp-text">
+            <h3>Tout se fait en quelques mots</h3>
+            <p>Créer un produit, confirmer une livraison, enregistrer un paiement cash — chaque action prend moins de 30 secondes dans le chat.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">🔄</div>
+          <div class="sp-text">
+            <h3>Aucun changement d'habitude</h3>
+            <p>Tu restais déjà sur WhatsApp toute la journée. Sanù s'intègre à ta façon de travailler, pas l'inverse. Zéro friction, zéro apprentissage.</p>
+          </div>
+        </div>
+        <div class="simple-point reveal">
+          <div class="sp-icon">📋</div>
+          <div class="sp-text">
+            <h3>Formalisation sans douleur</h3>
+            <p>Avec les nouvelles obligations fiscales, tes factures et ta comptabilité sont générées automatiquement. Tu es en règle sans effort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP COMPLEMENT -->
+<section class="app-section">
+  <div class="app-inner">
+    <p class="eyebrow reveal">WhatsApp + Application</p>
+    <h2 class="section-title reveal">Le meilleur des deux mondes.</h2>
+
+    <div class="bridge reveal">
+      <div class="bridge-icon">🔗</div>
+      <div class="bridge-text">
+        <h3>WhatsApp pour agir, l'app pour voir</h3>
+        <p>Tu gères tout depuis WhatsApp — rapide, naturel, sans friction. L'application Sanù te donne une vue d'ensemble complète de ton activité quand tu en as besoin.</p>
+      </div>
+    </div>
+
+    <div class="app-grid" style="margin-top: 48px;">
+      <div class="app-points">
+        <div class="app-point reveal">
+          <div class="app-point-icon">📱</div>
+          <div>
+            <h3>WhatsApp — ton cockpit du quotidien</h3>
+            <p>Crée, vends, encaisse et réponds à tes clients directement en chat. Tout ce qui est urgent se fait là, en quelques mots.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">📊</div>
+          <div>
+            <h3>L'app — ta vue globale</h3>
+            <p>Consulte tes graphiques de ventes, l'historique complet de tes commandes, le détail de ta comptabilité mensuelle et tes rapports fiscaux.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">🔔</div>
+          <div>
+            <h3>Synchronisation en temps réel</h3>
+            <p>Tout ce que tu fais sur WhatsApp s'affiche instantanément dans l'app. Rien à saisir deux fois. Tout est toujours à jour.</p>
+          </div>
+        </div>
+        <div class="app-point reveal">
+          <div class="app-point-icon">📥</div>
+          <div>
+            <h3>Exports et rapports en un clic</h3>
+            <p>Télécharge tes rapports mensuels, tes factures groupées ou ton bilan annuel directement depuis l'app — prêt pour le fisc ou tes banques.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard visual -->
+      <div class="app-visual reveal">
+        <div class="dash-header">
+          <span class="dh-title">Tableau de bord</span>
+          <span class="dh-date">Février 2025</span>
+        </div>
+        <div class="dash-kpis">
+          <div class="kpi">
+            <div class="kpi-label">Chiffre d'affaires</div>
+            <div class="kpi-val">187 500<span style="font-size:0.7rem; font-weight:400; color:rgba(255,255,255,0.4)"> F</span></div>
+            <span class="kpi-badge">↑ +23% vs jan</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Commandes</div>
+            <div class="kpi-val">34</div>
+            <span class="kpi-badge">↑ 8 de plus</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Panier moyen</div>
+            <div class="kpi-val">5 515<span style="font-size:0.7rem; font-weight:400; color:rgba(255,255,255,0.4)"> F</span></div>
+            <span class="kpi-badge">Stable</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Taux livraison</div>
+            <div class="kpi-val">94<span style="font-size:1rem">%</span></div>
+            <span class="kpi-badge">↑ Excellent</span>
+          </div>
+        </div>
+        <div class="dash-chart">
+          <div class="dash-chart-label">VENTES PAR SEMAINE</div>
+          <div class="bars">
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:48%"></div>
+            <div class="bar hi" style="height:72%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar hi" style="height:85%"></div>
+            <div class="bar" style="height:68%"></div>
+            <div class="bar hi" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="dash-orders">
+          <div class="order-row">
+            <span class="oname">Robe wax indigo × 2</span>
+            <span class="oprice">19 000 F</span>
+            <span class="ostatus">Livré</span>
+          </div>
+          <div class="order-row">
+            <span class="oname">Ensemble boubou</span>
+            <span class="oprice">14 500 F</span>
+            <span class="ostatus">En route</span>
+          </div>
+          <div class="order-row">
+            <span class="oname">Tissu ankara 3m</span>
+            <span class="oprice">7 200 F</span>
+            <span class="ostatus">Livré</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Rejoins Sanù</p>
+    <h2 class="section-title reveal">Ton business mérite<br>mieux qu'un carnet.</h2>
+    <p class="reveal">Rejoins les premiers vendeurs qui transforment leur WhatsApp en vrai outil professionnel — gratuit pendant la bêta.</p>
+    <div class="cta-form-wrap">
+      <div class="input-group reveal" id="ig2">
+        <input type="tel" id="p2" placeholder="Ton numéro WhatsApp (+229…)" />
+        <button class="btn-join" onclick="doJoin('p2','ig2','s2','h2')">
+          Rejoindre
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="success-box" id="s2" style="margin-top:0;">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div>
+          <p>Bienvenue dans Sanù ✓</p>
+          <small>On te contacte sur WhatsApp très bientôt.</small>
+        </div>
+      </div>
+      <p class="form-hint reveal" id="h2">Gratuit pendant la bêta · <span>Pas de carte bancaire</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wordmark">san<em>ù</em></div>
+  <span>© 2025 Sanù · Cotonou, Bénin 🇧🇯</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    let delay = 0;
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = delay + 's';
+        e.target.classList.add('vis');
+        delay += 0.06;
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Waitlist
+  function doJoin(inputId, groupId, successId, hintId) {
+    const val = document.getElementById(inputId).value.trim();
+    const inp = document.getElementById(inputId);
+    if (!val) {
+      inp.style.background = '#fff3f3';
+      inp.placeholder = 'Entre ton numéro WhatsApp 👆';
+      setTimeout(() => {
+        inp.style.background = '';
+        inp.placeholder = 'Ton numéro WhatsApp (+229…)';
+      }, 1800);
+      return;
+    }
+    // Store
+    try {
+      const list = JSON.parse(localStorage.getItem('sanu_list') || '[]');
+      list.push({ phone: val, ts: new Date().toISOString() });
+      localStorage.setItem('sanu_list', JSON.stringify(list));
+    } catch(e) {}
+    // UI
+    const grp = document.getElementById(groupId);
+    const suc = document.getElementById(successId);
+    const hint = document.getElementById(hintId);
+    grp.style.display = 'none';
+    if (hint) hint.style.display = 'none';
+    suc.style.display = 'flex';
+    suc.style.animation = 'rise 0.4s ease';
+  }
+
+  // Enter key
+  document.querySelectorAll('input[type="tel"]').forEach(inp => {
+    inp.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      if (inp.id === 'p1') doJoin('p1','ig1','s1','h1');
+      else doJoin('p2','ig2','s2','h2');
+    });
+  });
+</script>
+</body>
+</html>
